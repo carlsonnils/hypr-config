@@ -19,7 +19,7 @@ hl.monitor({
 
 -- Set programs that you use
 local terminal    = "alacritty"
-local fileManager = "dolphin"
+local fileManager = "nautilus"
 local menu        = "hyprlauncher"
 local browser	  = "firefox"
 
@@ -304,6 +304,12 @@ hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = tr
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
+
+-- screen shots
+hl.bind("Print", hl.dsp.exec_cmd("grim -g \"$(slurp)\" ~/Downloads/screenshot_$(date +%Y%m%d_%H%M%S).png"), { locked = true })
+hl.bind("SHIFT + Print", hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | wl-copy"), { locked = true })
+hl.bind("CTRL + Print", hl.dsp.exec_cmd("grim - | wl-copy"), { locked = true })
+hl.bind("CTRL + SHIFT + Print", hl.dsp.exec_cmd("grim ~/Downloads/screenshot_$(date +%Y%m%d_%H%M%S).png"), { locked = true})
 
 
 --------------------------------
