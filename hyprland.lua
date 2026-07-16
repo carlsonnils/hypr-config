@@ -20,7 +20,7 @@ hl.monitor({
 -- Set programs that you use
 local terminal    = "alacritty"
 local fileManager = "nautilus"
-local menu        = "hyprlauncher"
+local menu        = "walker"
 local browser	  = "firefox"
 
 
@@ -44,6 +44,10 @@ hl.on("hyprland.start", function ()
   -- hl.exec_cmd("wl-paste --type image --watch cliphist store")
   -- Wallpaper Slideshow
   hl.exec_cmd("bash ~/.config/hypr/scripts/wallpaper-slideshow.sh")
+  hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
+  -- walker menu service
+  hl.exec_cmd("systemctl --user start elephant")
+  hl.exec_cmd(menu .. " --gapplication-service")
 end)
 
 
@@ -310,6 +314,10 @@ hl.bind("Print", hl.dsp.exec_cmd("grim -g \"$(slurp)\" ~/Downloads/screenshot_$(
 hl.bind("SHIFT + Print", hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | wl-copy"), { locked = true })
 hl.bind("CTRL + Print", hl.dsp.exec_cmd("grim - | wl-copy"), { locked = true })
 hl.bind("CTRL + SHIFT + Print", hl.dsp.exec_cmd("grim ~/Downloads/screenshot_$(date +%Y%m%d_%H%M%S).png"), { locked = true})
+
+
+-- Grayscale
+require("shaders/grayscale").apply(mainMod)
 
 
 --------------------------------
